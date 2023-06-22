@@ -5,6 +5,7 @@
 0. [Installation](#installation)
 0. [Training](#training)
 0. [Steps to execute](#Steps-to-execute)
+0. [Results](#results)
 
 ## Objective
 To perform clustering on the image dataset using SCAN with visual explainations
@@ -40,7 +41,7 @@ python app.py --n 100 --query 500 --config_exp configs/scan/scan_cifar20.yml --m
 python eval_charts.py --query 500 --config_exp configs/scan/scan_cifar20.yml --model repository_eccv/cifar-20/scan/model.pth.tar
 ```
 
-#### Results
+### Results
 
 After evaluating clustering for dynamic number of candidate images [50, 100,...,1000], we got clustering performance metrics as follows:
 1. Accuracy
