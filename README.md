@@ -37,7 +37,23 @@ For example, run the following commands to perform our method on CIFAR20:
 ```shell
 python find_candidates.py --config_env configs/env.yml --config_exp configs/pretext/simclr_cifar20.yml
 python app.py --n 100 --query 500 --config_exp configs/scan/scan_cifar20.yml --model repository_eccv/cifar-20/scan/model.pth.tar
-python eval_charts.py --config_exp configs/scan/scan_cifar20.yml --model repository_eccv/cifar-20/scan/model.pth.tar
+python eval_charts.py --query 500 --config_exp configs/scan/scan_cifar20.yml --model repository_eccv/cifar-20/scan/model.pth.tar
 ```
+
+#### Results
+
+After evaluating clustering for dynamic number of candidate images [50, 100,...,1000], we got clustering performance metrics as follows:
+1. Accuracy
+2. Adjusted Rand Index
+3. Normalized Mutual Information
+4. Accuracy with Top 5 neighbors
+
+And the charts we generated are as follows:
+<p align="center">
+    <img src="images/ACC.png"/>
+    <img src="images/ARI.png"/>
+    <img src="images/NMI.png"/>
+    <img src="images/ACCTop5.png"/>
+</p>
 
 
