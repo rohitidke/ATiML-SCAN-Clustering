@@ -4,7 +4,7 @@
 1. [Objective](#objective)
 0. [Installation](#installation)
 0. [Training](#training)
-0. [Steps to execute](#tutorial)
+0. [Steps to execute](#Steps-to-execute)
 
 ## Objective
 To perform clustering on the image dataset using SCAN with visual explainations
@@ -24,7 +24,7 @@ conda install -c conda-forge grad-cam         # For visual explainations
 We refer to the `requirements.txt` file for an overview of the packages in the environment we used to produce our results.
 
 ## Training
-We have trained the SCAN model over the standard CIFAR100-20 image training dataset and persisted that model into the repository at `repository_eccv\cifar-20\scan\model.pth.tar`
+We have trained the SCAN model over the standard CIFAR100-20 image training dataset and persisted that model into the repository at `repository_eccv\cifar-20\scan\model.pth.tar`<br>
 Similarly, we have refined the model using self-labeling and persisted that model at `repository_eccv\cifar-20\selflabel\model.pth.tar`
 
 ### Steps to execute
