@@ -1,6 +1,6 @@
 external/cifar-20/
 *point.pth.tar
-pretext/
+repository_eccv/cifar-20/pretext/
 
 # Byte-compiled / optimized / DLL files
 __pycache__/

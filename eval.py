@@ -83,7 +83,7 @@ def main():
         print(colored('Perform evaluation of the clustering model (setup={}).'.format(config['setup']), 'blue'))
         head = state_dict['head'] if config['setup'] == 'scan' else 0
         predictions, features = get_predictions(config, dataloader, model, return_features=True)
-        import pdb;pdb.set_trace()
+        # import pdb;pdb.set_trace()
         clustering_stats = hungarian_evaluate(head, predictions, dataset.classes, compute_confusion_matrix=True)
         print(clustering_stats)
         if args.visualize_prototypes:
