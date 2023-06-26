@@ -8,7 +8,8 @@
 0. [Results](#results)
 
 ## Objective
-To perform clustering on the image dataset using SCAN with visual explainations
+To perform clustering on the image dataset using SCAN with visual explainations.
+Reference Paper: https://arxiv.org/pdf/2005.12320.pdf
 
 
 ## Installation
@@ -58,6 +59,10 @@ It will show prototype image of each cluster and it's respective heatmap. In the
 </p>
 
 ### Results
+The confusion matrix is generated as follows:
+<p align="center">
+    <img src="images/confmatrix.png"/>
+</p>
 
 After evaluating clustering for dynamic number of candidate images [50, 100,...,1000], we got clustering performance metrics as follows:
 1. Accuracy
