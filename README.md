@@ -37,13 +37,13 @@ The configuration files can be found in the `configs/` directory. The clustering
 For example, run the following commands to perform our method on CIFAR20:
 ```shell
 python find_candidates.py --config_env configs/env.yml --config_exp configs/pretext/simclr_cifar20.yml
-python app.py --n 100 --query 500 --config_exp configs/scan/scan_cifar20.yml --model repository_eccv/cifar-20/scan/model.pth.tar
+python app.py --n 300 --query 500 --config_exp configs/scan/scan_cifar20.yml --model repository_eccv/cifar-20/scan/model.pth.tar
 python eval_charts.py --query 500 --config_exp configs/scan/scan_cifar20.yml --model repository_eccv/cifar-20/scan/model.pth.tar
 ```
 
 To apply grad-cam on clustered dataset, add --visualize_prototypes in the above command as follows:
 ```shell
-python app.py --n 100 --query 500 --config_exp configs/scan/scan_cifar20.yml --model repository_eccv/cifar-20/scan/model.pth.tar --visualize_prototypes
+python app.py --n 300 --query 500 --config_exp configs/scan/scan_cifar20.yml --model repository_eccv/cifar-20/scan/model.pth.tar --visualize_prototypes
 ```
 It will show prototype image of each cluster and it's respective heatmap. In the heatmap, you can see what were the most coontributing features for that cluster.
 

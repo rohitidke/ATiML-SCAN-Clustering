@@ -105,7 +105,7 @@ def main():
     if args.visualize_prototypes:
         prototype_indices_all_classes = get_prototypes(config, predictions[head], features, model)
         prototype_indices = [prototype_indices_all_classes[i] for i in sorted(list(clusters.keys()))]
-        import pdb;pdb.set_trace()
+        # import pdb;pdb.set_trace()
         visualize_indices(prototype_indices, dataset, clustering_stats['hungarian_match'])
 
     # grad_cam_call()
