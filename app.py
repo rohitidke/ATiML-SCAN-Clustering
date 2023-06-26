@@ -105,6 +105,7 @@ def main():
     if args.visualize_prototypes:
         prototype_indices_all_classes = get_prototypes(config, predictions[head], features, model)
         prototype_indices = [prototype_indices_all_classes[i] for i in sorted(list(clusters.keys()))]
+        import pdb;pdb.set_trace()
         visualize_indices(prototype_indices, dataset, clustering_stats['hungarian_match'])
 
     # grad_cam_call()
@@ -144,6 +145,7 @@ def grad_cam_call(idx, dataset):
     # Display the image
     plt.imshow(image)
     plt.axis('off')  # Turn off axes
+    plt.title(dataset[idx]['meta']['class_name'])
     plt.show()
 
 
@@ -166,10 +168,10 @@ def grad_cam_call(idx, dataset):
     # Generate class activation heatmap
     heatmap = make_gradcam_heatmap(img_array, model, last_conv_layer_name)
 
-    save_and_display_gradcam(image, heatmap)
+    save_and_display_gradcam(image, heatmap, dataset[idx]['meta']['class_name'])
 
 
-def save_and_display_gradcam(img_object, heatmap, cam_path="cam.jpg", alpha=0.4):
+def save_and_display_gradcam(img_object, heatmap, title, cam_path="cam.jpg", alpha=0.4):
     # Load the original image
     # img = keras.utils.load_img(img_path)
     img = keras.utils.img_to_array(img_object)
@@ -204,6 +206,7 @@ def save_and_display_gradcam(img_object, heatmap, cam_path="cam.jpg", alpha=0.4)
     # Display the image
     plt.imshow(image)
     plt.axis('off')  # Turn off axes
+    plt.title(title)
     plt.show()
 
     return heatmap
@@ -310,6 +313,7 @@ def visualize_query_image(idx, dataset):
     plt.figure()
     plt.axis('off')
     plt.imshow(img)
+    plt.title(dataset[idx]['meta']['class_name'])
     plt.show()
 
 
