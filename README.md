@@ -41,6 +41,12 @@ python app.py --n 100 --query 500 --config_exp configs/scan/scan_cifar20.yml --m
 python eval_charts.py --query 500 --config_exp configs/scan/scan_cifar20.yml --model repository_eccv/cifar-20/scan/model.pth.tar
 ```
 
+To apply grad-cam on clustered dataset, add --visualize_prototypes in the above command as follows:
+```shell
+python app.py --n 100 --query 500 --config_exp configs/scan/scan_cifar20.yml --model repository_eccv/cifar-20/scan/model.pth.tar --visualize_prototypes
+```
+It will show prototype image of each cluster and it's respective heatmap. In the heatmap, you can see what were the most coontributing features for that cluster.
+
 ### Results
 
 After evaluating clustering for dynamic number of candidate images [50, 100,...,1000], we got clustering performance metrics as follows:
