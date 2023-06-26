@@ -47,6 +47,16 @@ python app.py --n 100 --query 500 --config_exp configs/scan/scan_cifar20.yml --m
 ```
 It will show prototype image of each cluster and it's respective heatmap. In the heatmap, you can see what were the most coontributing features for that cluster.
 
+<p align="center">
+    <img src="images/Figure_1.png" width="100"/>
+    <img src="images/Figure_1_heatmap.png" width="100"/>
+</p>
+
+<p align="center">
+    <img src="images/Figure_2.png" width="100"/>
+    <img src="images/Figure_2_heatmap.png" width="100"/>
+</p>
+
 ### Results
 
 After evaluating clustering for dynamic number of candidate images [50, 100,...,1000], we got clustering performance metrics as follows:
