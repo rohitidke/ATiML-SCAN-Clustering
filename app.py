@@ -37,6 +37,8 @@ parser.add_argument('--config_exp', help='Location of config file')
 parser.add_argument('--model', help='Location where model is saved')
 parser.add_argument('--visualize_prototypes', action='store_true', 
                     help='Show the prototpye for each cluster')
+parser.add_argument('--visualize_clusters', action='store_true', 
+                    help='Show all the images of each cluster')
 
 args = parser.parse_args()
 
@@ -107,8 +109,8 @@ def main():
         prototype_indices = [prototype_indices_all_classes[i] for i in sorted(list(clusters.keys()))]
         # import pdb;pdb.set_trace()
         visualize_indices(prototype_indices, dataset, clustering_stats['hungarian_match'])
-
-    # grad_cam_call()
+    if args.visualize_clusters:
+        visualize_clusters(clusters, dataset)
 
 
 def grad_cam_call(idx, dataset):
@@ -143,10 +145,10 @@ def grad_cam_call(idx, dataset):
     image = image.resize(size=img_size)
 
     # Display the image
-    plt.imshow(image)
-    plt.axis('off')  # Turn off axes
-    plt.title(dataset[idx]['meta']['class_name'])
-    plt.show()
+    # plt.imshow(image)
+    # plt.axis('off')  # Turn off axes
+    # plt.title(dataset[idx]['meta']['class_name'])
+    # plt.show()
 
 
     array = np.expand_dims(image, axis=0)
@@ -168,7 +170,9 @@ def grad_cam_call(idx, dataset):
     # Generate class activation heatmap
     heatmap = make_gradcam_heatmap(img_array, model, last_conv_layer_name)
 
-    save_and_display_gradcam(image, heatmap, dataset[idx]['meta']['class_name'])
+    heatmap_image = save_and_display_gradcam(image, heatmap, dataset[idx]['meta']['class_name'])
+
+    return image, heatmap_image, dataset[idx]['meta']['class_name']
 
 
 def save_and_display_gradcam(img_object, heatmap, title, cam_path="cam.jpg", alpha=0.4):
@@ -204,12 +208,12 @@ def save_and_display_gradcam(img_object, heatmap, title, cam_path="cam.jpg", alp
     image = mpimg.imread(cam_path)
     
     # Display the image
-    plt.imshow(image)
-    plt.axis('off')  # Turn off axes
-    plt.title(title)
-    plt.show()
+    # plt.imshow(image)
+    # plt.axis('off')  # Turn off axes
+    # plt.title(title)
+    # plt.show()
 
-    return heatmap
+    return image
 
 
 def get_img_array(img_path, size):
@@ -315,6 +319,38 @@ def visualize_query_image(idx, dataset):
     plt.imshow(img)
     plt.title(dataset[idx]['meta']['class_name'])
     plt.show()
+
+def visualize_clusters(clusters, dataset):
+
+    for k in clusters:
+        print(f"clusters {k}:") 
+        original_list = []
+        heatmap_list = []
+        title_list = []
+        for i in clusters[k]:
+            print(i)
+            original, heatmap, title = grad_cam_call(i, dataset)
+            original_list.append(original)
+            heatmap_list.append(heatmap)
+            title_list.append(title)
+
+        for idx, ori in enumerate(original_list):
+            plt.subplot(5,(len(clusters[k])//5)+1,idx+1)
+            plt.imshow(ori)
+            plt.axis('off')  # Turn off axes
+            plt.title(title_list[idx])
+        plt.tight_layout()
+        plt.show()
+
+        for idx, heat in enumerate(heatmap_list):
+            plt.subplot(5,(len(clusters[k])//5)+1,idx+1)
+            plt.imshow(heat)
+            plt.axis('off')  # Turn off axes
+            plt.title(title_list[idx])
+        plt.tight_layout()
+        plt.show()
+
+        print()
 
 
 if __name__ == "__main__":

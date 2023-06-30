@@ -46,7 +46,7 @@ To apply grad-cam on clustered dataset, add --visualize_prototypes in the above 
 ```shell
 python app.py --n 300 --query 500 --config_exp configs/scan/scan_cifar20.yml --model repository_eccv/cifar-20/scan/model.pth.tar --visualize_prototypes
 ```
-It will show prototype image of each cluster and it's respective heatmap. In the heatmap, you can see what were the most coontributing features for that cluster.
+It will show prototype image of each cluster and it's respective heatmap. In the heatmap, you can see what were the most contributing features for that cluster.
 
 <p align="center">
     <img src="images/Figure_1.png" width="300"/>
@@ -56,6 +56,17 @@ It will show prototype image of each cluster and it's respective heatmap. In the
 <p align="center">
     <img src="images/Figure_2.png" width="300"/>
     <img src="images/Figure_2_heatmap.png" width="300"/>
+</p>
+
+To apply grad-cam on all images of the clusters, add --visualize_clusters in the above command as follows:
+```shell
+python app.py --n 300 --query 500 --config_exp configs/scan/scan_cifar20.yml --model repository_eccv/cifar-20/scan/model.pth.tar --visualize_clusters
+```
+It will show images of each cluster and it's respective heatmap. In the heatmap, you can see what were the most contributing features for that cluster.
+
+<p align="center">
+    <img src="images/cluster.png"/>
+    <img src="images/cluster_heatmap.png"/>
 </p>
 
 ### Results
